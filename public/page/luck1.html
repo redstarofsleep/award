@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="awardModule">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link href="/award/public/bootstrap/css/bootstrap.min.css"/>
 		<script type="text/javascript" src="/award/public/jquery/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="/award/public/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/award/public/angular/angular.min.js"/>
+		<script type="text/javascript">
+		var awardModule = angular.module('awardModule', []);
+		awardModule.controller('AwardController', function($scope, $http) {
+			// $http({'url':'/vote/votelist', 'method': 'get'}).success(function(data, status) {
+			// 	alert(data);
+			// 	$scope.voteList = data;
+			// })
+			$scope.luck1 = ['0000','0000','0000','0000','0000'];
+		});
+		</script>
 	</head>
-	<body>
+	<body ng-controller="AwardController">
+		<div ng-repeat="luck in luck1">
+			{{luck}}
+		</div>
 	</body>
 </html>
