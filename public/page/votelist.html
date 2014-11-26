@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="voteModule">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="/vote/public/jquery/jquery-1.11.0.min.js"/>
+		<script type="text/javascript" src="/vote/public/bootstrap/js/bootstrap.min.js"/>
+		<link href="/vote/public/bootstrap/js/bootstrap.min.js"/>
+		<script type="text/javascript" src="/vote/public/angular/angular.min.js"/>
+		<script type="text/javascript">
+		var voteModule = angular.module('voteModule', []);
+		voteModule.controller('VoteController', function($scope, $http)) {
+			alert(0);
+			$http({'url':'/vote/votelist', 'method': 'get'}).success(function(data, status) {
+				alert(data);
+				$scope.voteList = data;
+			})
+		}
+		</script>
+	</head>
+	<body ng-controller="VoteController">
+		<div ng-repeat="vote in voteList">
+			{{vote.title}}
+		</div>
+	</body>
+</html>
