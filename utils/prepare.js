@@ -2,17 +2,21 @@ var users = require('./users');
 var awoptions = require('./options');
 
 // 需要排除的黑名单
-var blacks = ['000'];
+var blacks = ['0000'];
 // 所有的号码
 var phones = [];
 var optionNum = 0;
 // 中奖号码
 var awards = [];
 
-/**
- * 启动时加载
- */
-exports.start = function prepare() {
+exports.getPhones = function() {
+	return phones;
+};
+exports.getAwards = function() {
+	return awards;
+}
+
+var preparePhones = function() {
 	var datas = users.getUsers();
 	var options = awoptions.getOptions();
 
@@ -36,6 +40,15 @@ exports.start = function prepare() {
 			}
 		}
 	}
+}
+
+/**
+ * 启动时加载
+ */
+exports.start = function() {
+	var datas = users.getUsers();
+	var options = awoptions.getOptions();
+	preparePhones();
 	
 	// 抽奖
 	for (var opt in options) {

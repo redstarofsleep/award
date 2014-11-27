@@ -46,7 +46,7 @@ var options = [
 	]},
 	{name: '三等奖', total: 6, count: 2, distribute: [
 		{dep: 'gmsz1', size: 1, already: 0},
-		{dep: 'other1', size: 1, already: 0},
+		{dep: 'gmsz1', size: 1, already: 0},
 		{dep: 'gmsz1', size: 1, already: 0},
 		{dep: 'gmsz1', size: 1, already: 0},
 		{dep: 'other1', size: 1, already: 0},

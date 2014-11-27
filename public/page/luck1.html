@@ -2,24 +2,338 @@
 <html ng-app="awardModule">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="/award/public/bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/award/public/bootstrap/css/bootstrap.min.css"></link>
 		<script type="text/javascript" src="/award/public/jquery/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="/award/public/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/award/public/angular/angular.min.js"/>
+		<script type="text/javascript" src="/award/public/angular/angular.min.js"></script>
+		<script type="text/javascript" src="/award/public/js/award.js"></script>
+		<style type="text/css">
+			.com-hide {display: none;}
+			.numbox {padding: 0; text-align: center;}
+			.retryLink {position:absolute;top:0;right:20px;padding:10px;padding-top:0;}
+		</style>
 		<script type="text/javascript">
 		var awardModule = angular.module('awardModule', []);
-		awardModule.controller('AwardController', function($scope, $http) {
+		awardModule.controller('AwardController', function($scope, $http, $interval) {
 			// $http({'url':'/vote/votelist', 'method': 'get'}).success(function(data, status) {
 			// 	alert(data);
 			// 	$scope.voteList = data;
 			// })
-			$scope.luck1 = ['0000','0000','0000','0000','0000'];
+			
+			$scope.luck = [
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'},{'title':'8888'}], 
+				
+				[{'title':'8888'},{'title':'8888'}], 
+				[{'title':'8888'},{'title':'8888'}],
+				[{'title':'8888'},{'title':'8888'}], 
+				
+				[{'title':'8888'}],
+				[{'title':'8888'}],
+				[{'title':'8888'}],
+				
+				[{'title':'8888'}],
+
+				[{'title':'8888'}]
+			];
+
+			$scope.startCounts = [0,0,0,0,0,0,0,0,0,0, 0,0,0, 0,0,0, 0, 0];
+
+			$scope.awardCount = 0;
+
+			var phones = null;
+			$http({'url':'/award/phones', 'method':'get'}).success(function(data, status) {
+				phones = data;
+			});
+			var goodLuckPhones = null;
+			$http({'url':'/award/lucks', 'method':"get"}).success(function(data, status) {
+				goodLuckPhones = data;
+			});
+			
+			var timer = null;
+
+			$scope.startLuck = function(num) {
+				$scope.startCounts[num]++;
+				timer = $interval(function() {
+					var selNums = radamNum($scope.luck[num].length, phones);
+					for (var i = 0; i < selNums.length; i++) {
+						$scope.luck[num][i].title = selNums[i];
+					}
+				}, 40);
+			};
+			$scope.endLuck = function(num, start, count) {
+				$interval.cancel(timer);
+				$scope.startCounts[num]++;
+				for (var j = 0; j < count; j++) {
+					$scope.luck[num][j].title = goodLuckPhones[start+j];
+				}
+			};
+			$scope.retry = function(num, index) {
+				$scope.luck[num][index].title = '8888';
+			};
+
+			$scope.next = function() {
+				$scope.awardCount++;
+			};
+			$scope.last = function() {
+				$scope.awardCount--;
+			};
+
+			$scope.$on('$destroy',function(event) {
+				$interval.cancel(timer);
+			});
 		});
 		</script>
 	</head>
-	<body ng-controller="AwardController">
-		<div ng-repeat="luck in luck1">
-			{{luck}}
+	<body ng-controller="AwardController" class="container">
+		<div ng-class="{'com-hide': awardCount!=0}">
+			<div>幸运奖1/10</div>
+			<div ng-repeat="luck in luck[0]" class="alert alert-danger numbox">
+				<h1>{{luck.title}}</h1>
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(0, $index);">999999999</a>
+			</div>
+			<div ng-class="{'com-hide': startCounts[0]!=0}">
+				<button ng-click="startLuck(0);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[0]!=1}">
+				<button ng-click="endLuck(0, 0, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=1}">
+			<div>幸运奖2/10</div>
+			<div ng-repeat="luck in luck[1]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[1]!=0}">
+				<button ng-click="startLuck(1);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[1]!=1}">
+				<button ng-click="endLuck(1, 5, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=2}">
+			<div>幸运奖3/10</div>
+			<div ng-repeat="luck in luck[2]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[2]!=0}">
+				<button ng-click="startLuck(2);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[2]!=1}">
+				<button ng-click="endLuck(2, 10, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=3}">
+			<div>幸运奖4/10</div>
+			<div ng-repeat="luck in luck[3]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[3]!=0}">
+				<button ng-click="startLuck(3);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[3]!=1}">
+				<button ng-click="endLuck(3, 15, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=4}">
+			<div>幸运奖5/10</div>
+			<div ng-repeat="luck in luck[4]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[4]!=0}">
+				<button ng-click="startLuck(4);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[4]!=1}">
+				<button ng-click="endLuck(4, 20, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=5}">
+			<div>幸运奖6/10</div>
+			<div ng-repeat="luck in luck[5]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[5]!=0}">
+				<button ng-click="startLuck(5);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[5]!=1}">
+				<button ng-click="endLuck(5, 25, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=6}">
+			<div>幸运奖7/10</div>
+			<div ng-repeat="luck in luck[6]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[6]!=0}">
+				<button ng-click="startLuck(6);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[6]!=1}">
+				<button ng-click="endLuck(6, 30, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=7}">
+			<div>幸运奖8/10</div>
+			<div ng-repeat="luck in luck[7]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[7]!=0}">
+				<button ng-click="startLuck(7);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[7]!=1}">
+				<button ng-click="endLuck(7, 35, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=8}">
+			<div>幸运奖9/10</div>
+			<div ng-repeat="luck in luck[8]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[8]!=0}">
+				<button ng-click="startLuck(8);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[8]!=1}">
+				<button ng-click="endLuck(8, 40, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=9}">
+			<div>幸运奖10/10</div>
+			<div ng-repeat="luck in luck[9]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[9]!=0}">
+				<button ng-click="startLuck(9);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[9]!=1}">
+				<button ng-click="endLuck(9, 45, 5);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=10}">
+			<div>三等奖1/3</div>
+			<div ng-repeat="luck in luck[10]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[10]!=0}">
+				<button ng-click="startLuck(10);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[10]!=1}">
+				<button ng-click="endLuck(10, 50, 2);">end</button>
+			</div>
+		</div>
+		
+		<div ng-class="{'com-hide': awardCount!=11}">
+			<div>三等奖2/3</div>
+			<div ng-repeat="luck in luck[11]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[11]!=0}">
+				<button ng-click="startLuck(11);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[11]!=1}">
+				<button ng-click="endLuck(11, 52, 2);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=12}">
+			<div>三等奖3/3</div>
+			<div ng-repeat="luck in luck[12]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[12]!=0}">
+				<button ng-click="startLuck(12);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[12]!=1}">
+				<button ng-click="endLuck(12, 54, 2);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=13}">
+			<div>二等奖1/3</div>
+			<div ng-repeat="luck in luck[13]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[13]!=0}">
+				<button ng-click="startLuck(13);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[13]!=1}">
+				<button ng-click="endLuck(13, 56, 1);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=14}">
+			<div>二等奖2/3</div>
+			<div ng-repeat="luck in luck[14]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[14]!=0}">
+				<button ng-click="startLuck(14);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[14]!=1}">
+				<button ng-click="endLuck(14, 57, 1);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=15}">
+			<div>二等奖3/3</div>
+			<div ng-repeat="luck in luck[15]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[15]!=0}">
+				<button ng-click="startLuck(15);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[15]!=1}">
+				<button ng-click="endLuck(15, 58, 1);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=16}">
+			<div>一等奖</div>
+			<div ng-repeat="luck in luck[16]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[16]!=0}">
+				<button ng-click="startLuck(16);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[16]!=1}">
+				<button ng-click="endLuck(16, 59, 1);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount!=17}">
+			<div>特等奖</div>
+			<div ng-repeat="luck in luck[17]">
+				{{luck.title}}
+			</div>
+			<div ng-class="{'com-hide': startCounts[17]!=0}">
+				<button ng-click="startLuck(17);">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[17]!=1}">
+				<button ng-click="endLuck(17, 60, 1);">end</button>
+			</div>
+		</div>
+
+		<div ng-class="{'com-hide': awardCount==17}">
+			<button ng-click="next();">next</button>
+		</div>
+		<div ng-class="{'com-hide': awardCount==0}">
+			<button ng-click="last();">last</button>
 		</div>
 	</body>
 </html>

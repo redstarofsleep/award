@@ -52,3 +52,7 @@ app.all(appRootPath + '/*', function(req, res, next) {
 });
 
 app.get('/award/start', award.startAward);
+
+app.get('/award/phones', award.getPhones);
+
+app.get('/award/lucks', award.getLucks);
