@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="/award/public/js/award.js"></script>
 		<style type="text/css">
 			.com-hide {display: none;}
+			.container {position: relative; text-align:center;}
 			.numbox {padding: 0; text-align: center;}
 			.retryLink {position:absolute;top:0;right:20px;padding:10px;padding-top:0;}
 		</style>
@@ -54,7 +55,7 @@
 				phones = data;
 			});
 			var goodLuckPhones = null;
-			$http({'url':'/award/lucks', 'method':"get"}).success(function(data, status) {
+			$http({'url':'/award/lucks', 'method':'get'}).success(function(data, status) {
 				goodLuckPhones = data;
 			});
 			
@@ -76,8 +77,25 @@
 					$scope.luck[num][j].title = goodLuckPhones[start+j];
 				}
 			};
+
+			$scope.retryIndex = 999;
 			$scope.retry = function(num, index) {
+				if (!confirm('确定要重抽吗?')) return;
+
 				$scope.luck[num][index].title = '8888';
+				$scope.startCounts[num]++;
+
+				$scope.retryIndex = index;
+
+				$http({'url':'/award/retry', 'method':'get'}).success(function(data, status) {
+
+				});
+			};
+			$scope.startRetry = function(num) {
+				timer = $interval(function() {
+					var selNums = radamNum(1, phones);
+					$scope.luck[num][$scope.retryIndex].title = selNums[0];
+				}, 40);
 			};
 
 			$scope.next = function() {
@@ -95,16 +113,29 @@
 	</head>
 	<body ng-controller="AwardController" class="container">
 		<div ng-class="{'com-hide': awardCount!=0}">
-			<div>幸运奖1/10</div>
-			<div ng-repeat="luck in luck[0]" class="alert alert-danger numbox">
-				<h1>{{luck.title}}</h1>
-				<a href="javascript:void(0);" class="retryLink" ng-click="retry(0, $index);">999999999</a>
+			<div class="row">
+				<div class="col-sm-12"><h1>幸运奖1/10</h1></div>
 			</div>
-			<div ng-class="{'com-hide': startCounts[0]!=0}">
-				<button ng-click="startLuck(0);">start</button>
+			<div class="row">
+				<div ng-repeat="luck in luck[0]" class="col-sm-6" ng-class="{'col-sm-offset-3':$index==4}">
+					<div class="alert alert-danger numbox">
+						<h1>{{luck.title}}</h1>
+						<a href="javascript:void(0);" class="retryLink" ng-click="retry(0, $index);">&nbsp;&nbsp;</a>
+					</div>
+				</div>
 			</div>
-			<div ng-class="{'com-hide': startCounts[0]!=1}">
-				<button ng-click="endLuck(0, 0, 5);">end</button>
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3">
+					<div ng-class="{'com-hide': startCounts[0]!=0}">
+						<button class="btn btn-primary btn-block btn-lg" ng-click="startLuck(0);">start</button>
+					</div>
+					<div ng-class="{'com-hide': startCounts[0]!=1}">
+						<button class="btn btn-primary btn-block btn-lg" ng-click="endLuck(0, 0, 5);">end</button>
+					</div>
+					<div ng-class="{'com-hide': startCounts[0]!=3}">
+						<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry(0);">start</button>
+					</div>
+				</div>
 			</div>
 		</div>
 

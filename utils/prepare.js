@@ -8,6 +8,8 @@ var phones = [];
 var optionNum = 0;
 // 中奖号码
 var awards = [];
+// 重抽中奖号码
+var rewards = [];
 
 exports.getPhones = function() {
 	return phones;
@@ -90,3 +92,32 @@ exports.start = function() {
 	}
 	return awards;
 }
+
+exports.retry = function() {
+	var redatas = users.getUsers();
+	for (var data in redatas) {
+		if (redatas[data].part == 'gmsz1') {
+			break;
+		}
+	}
+	var flag = true;
+	var awardPhone = '0000';
+	while (flag) {
+		flag = false;
+		var index = Math.floor(Math.random()*redatas[data].people.length);
+		awardPhone = redatas[data].people[index].phone;
+		// 已经中奖者不算
+		for (var awph in awards) {
+			if (awards[awph] == awardPhone) flag = true;
+		}
+		// 黑名单中人员不算
+		for (var bk in blacks) {
+			if (blacks[bk] == awardPhone) flag = true;
+		}
+		// 重抽中奖者不算
+		for (re in rewards) {
+			if (rewards[re] == awardPhone) flag = true;
+		}
+	}
+	return awardPhone;
+};

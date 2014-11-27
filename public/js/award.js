@@ -1,3 +1,7 @@
+/**
+ * param num: 产生的随机数的个数
+ * param allPhones: 产生随机数的数组
+ */
 function radamNum(num, allPhones) {
 	var nums = [];
 

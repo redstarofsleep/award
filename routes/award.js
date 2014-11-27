@@ -12,4 +12,10 @@ exports.getPhones = function(req, res) {
 
 exports.getLucks = function(req, res) {
 	res.send(prepare.getAwards());
+};
+
+exports.retry = function(req, res) {
+	var renum = prepare.retry();
+	console.log('retry==>' + renum);
+	res.send(renum);
 }

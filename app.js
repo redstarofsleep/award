@@ -56,3 +56,5 @@ app.get('/award/start', award.startAward);
 app.get('/award/phones', award.getPhones);
 
 app.get('/award/lucks', award.getLucks);
+
+app.get('/award/retry', award.retry);
