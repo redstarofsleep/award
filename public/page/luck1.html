@@ -78,24 +78,30 @@
 				}
 			};
 
-			$scope.retryIndex = 999;
+			$scope.retryIndex = {};
 			$scope.retry = function(num, index) {
 				if (!confirm('确定要重抽吗?')) return;
 
 				$scope.luck[num][index].title = '8888';
-				$scope.startCounts[num]++;
+				$scope.startCounts[num] = 3;
 
-				$scope.retryIndex = index;
-
-				$http({'url':'/award/retry', 'method':'get'}).success(function(data, status) {
-
-				});
+				$scope.retryIndex.num = num;
+				$scope.retryIndex.index = index;
 			};
-			$scope.startRetry = function(num) {
+			$scope.startRetry = function() {
+				$scope.startCounts[$scope.retryIndex.num]++;
 				timer = $interval(function() {
 					var selNums = radamNum(1, phones);
-					$scope.luck[num][$scope.retryIndex].title = selNums[0];
+					$scope.luck[$scope.retryIndex.num][$scope.retryIndex.index].title = selNums[0];
 				}, 40);
+			};
+			$scope.endRetry = function() {
+				$interval.cancel(timer);
+				$scope.startCounts[$scope.retryIndex.num]++;
+				var current = new Date().getTime();
+				$http({'url':'/award/retry?time='+current, 'method':'get'}).success(function(data, status) {
+					$scope.luck[$scope.retryIndex.num][$scope.retryIndex.index].title = data;
+				});
 			};
 
 			$scope.next = function() {
@@ -133,7 +139,10 @@
 						<button class="btn btn-primary btn-block btn-lg" ng-click="endLuck(0, 0, 5);">end</button>
 					</div>
 					<div ng-class="{'com-hide': startCounts[0]!=3}">
-						<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry(0);">start</button>
+						<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+					</div>
+					<div ng-class="{'com-hide': startCounts[0]!=4}">
+						<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
 					</div>
 				</div>
 			</div>
