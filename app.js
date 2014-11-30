@@ -15,12 +15,12 @@ app.use(express.bodyParser());
 app.use(appRootPath + '/public', express.static('public'));
 
 var prepare = require('./utils/prepare');
-console.log('========s=t=a=r=t====================');
-var awards = prepare.start();
-for (var i = 0; i < awards.length; i++) {
-	console.log(i + ':' + awards[i]);
-}
-console.log('========e=n=d=====================');
+// console.log('========s=t=a=r=t====================');
+// var awards = prepare.start();
+// for (var i = 0; i < awards.length; i++) {
+// 	console.log(i + ':' + awards[i]);
+// }
+// console.log('========e=n=d=====================');
 
 /**
  * WebSocket监听启动

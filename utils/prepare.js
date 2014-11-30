@@ -34,7 +34,7 @@ var preparePhones = function() {
 		console.log('no file');
 	}
 	
-	console.log(blacks);
+	console.log('blacks:'+blacks);
 
 	var num = 0;
 	// 把所有号码读入到phones数组中
