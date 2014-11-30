@@ -58,6 +58,10 @@
 			$http({'url':'/award/lucks', 'method':'get'}).success(function(data, status) {
 				goodLuckPhones = data;
 			});
+
+			$http({'url':'/award/start', 'method':'get'}).success(function(data, status) {
+
+			});
 			
 			var timer = null;
 
@@ -151,7 +155,8 @@
 		<div ng-class="{'com-hide': awardCount!=1}">
 			<div>幸运奖2/10</div>
 			<div ng-repeat="luck in luck[1]">
-				{{luck.title}}
+				<h1>{{luck.title}}</h1>
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(1, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[1]!=0}">
 				<button ng-click="startLuck(1);">start</button>
@@ -159,12 +164,19 @@
 			<div ng-class="{'com-hide': startCounts[1]!=1}">
 				<button ng-click="endLuck(1, 5, 5);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[1]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[1]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=2}">
 			<div>幸运奖3/10</div>
 			<div ng-repeat="luck in luck[2]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(2, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[2]!=0}">
 				<button ng-click="startLuck(2);">start</button>
@@ -172,12 +184,19 @@
 			<div ng-class="{'com-hide': startCounts[2]!=1}">
 				<button ng-click="endLuck(2, 10, 5);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[2]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[2]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=3}">
 			<div>幸运奖4/10</div>
 			<div ng-repeat="luck in luck[3]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(3, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[3]!=0}">
 				<button ng-click="startLuck(3);">start</button>
@@ -185,12 +204,19 @@
 			<div ng-class="{'com-hide': startCounts[3]!=1}">
 				<button ng-click="endLuck(3, 15, 5);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[3]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[3]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=4}">
 			<div>幸运奖5/10</div>
 			<div ng-repeat="luck in luck[4]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(4, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[4]!=0}">
 				<button ng-click="startLuck(4);">start</button>
@@ -198,12 +224,19 @@
 			<div ng-class="{'com-hide': startCounts[4]!=1}">
 				<button ng-click="endLuck(4, 20, 5);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[4]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[4]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=5}">
 			<div>幸运奖6/10</div>
 			<div ng-repeat="luck in luck[5]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(5, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[5]!=0}">
 				<button ng-click="startLuck(5);">start</button>
@@ -211,12 +244,19 @@
 			<div ng-class="{'com-hide': startCounts[5]!=1}">
 				<button ng-click="endLuck(5, 25, 5);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[5]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[5]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=6}">
 			<div>幸运奖7/10</div>
 			<div ng-repeat="luck in luck[6]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(6, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[6]!=0}">
 				<button ng-click="startLuck(6);">start</button>
@@ -224,12 +264,19 @@
 			<div ng-class="{'com-hide': startCounts[6]!=1}">
 				<button ng-click="endLuck(6, 30, 5);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[6]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[6]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=7}">
 			<div>幸运奖8/10</div>
 			<div ng-repeat="luck in luck[7]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(7, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[7]!=0}">
 				<button ng-click="startLuck(7);">start</button>
@@ -237,12 +284,19 @@
 			<div ng-class="{'com-hide': startCounts[7]!=1}">
 				<button ng-click="endLuck(7, 35, 5);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[7]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[7]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=8}">
 			<div>幸运奖9/10</div>
 			<div ng-repeat="luck in luck[8]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(8, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[8]!=0}">
 				<button ng-click="startLuck(8);">start</button>
@@ -250,12 +304,19 @@
 			<div ng-class="{'com-hide': startCounts[8]!=1}">
 				<button ng-click="endLuck(8, 40, 5);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[8]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[8]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=9}">
 			<div>幸运奖10/10</div>
 			<div ng-repeat="luck in luck[9]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(9, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[9]!=0}">
 				<button ng-click="startLuck(9);">start</button>
@@ -263,12 +324,19 @@
 			<div ng-class="{'com-hide': startCounts[9]!=1}">
 				<button ng-click="endLuck(9, 45, 5);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[9]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[9]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=10}">
 			<div>三等奖1/3</div>
 			<div ng-repeat="luck in luck[10]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(10, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[10]!=0}">
 				<button ng-click="startLuck(10);">start</button>
@@ -276,12 +344,19 @@
 			<div ng-class="{'com-hide': startCounts[10]!=1}">
 				<button ng-click="endLuck(10, 50, 2);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[10]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[10]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 		
 		<div ng-class="{'com-hide': awardCount!=11}">
 			<div>三等奖2/3</div>
 			<div ng-repeat="luck in luck[11]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(11, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[11]!=0}">
 				<button ng-click="startLuck(11);">start</button>
@@ -289,12 +364,19 @@
 			<div ng-class="{'com-hide': startCounts[11]!=1}">
 				<button ng-click="endLuck(11, 52, 2);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[11]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[11]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=12}">
 			<div>三等奖3/3</div>
 			<div ng-repeat="luck in luck[12]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(12, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[12]!=0}">
 				<button ng-click="startLuck(12);">start</button>
@@ -302,12 +384,19 @@
 			<div ng-class="{'com-hide': startCounts[12]!=1}">
 				<button ng-click="endLuck(12, 54, 2);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[12]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[12]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=13}">
 			<div>二等奖1/3</div>
 			<div ng-repeat="luck in luck[13]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(13, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[13]!=0}">
 				<button ng-click="startLuck(13);">start</button>
@@ -315,12 +404,19 @@
 			<div ng-class="{'com-hide': startCounts[13]!=1}">
 				<button ng-click="endLuck(13, 56, 1);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[13]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[13]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=14}">
 			<div>二等奖2/3</div>
 			<div ng-repeat="luck in luck[14]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(14, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[14]!=0}">
 				<button ng-click="startLuck(14);">start</button>
@@ -328,12 +424,19 @@
 			<div ng-class="{'com-hide': startCounts[14]!=1}">
 				<button ng-click="endLuck(14, 57, 1);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[14]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[14]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=15}">
 			<div>二等奖3/3</div>
 			<div ng-repeat="luck in luck[15]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(15, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[15]!=0}">
 				<button ng-click="startLuck(15);">start</button>
@@ -341,12 +444,19 @@
 			<div ng-class="{'com-hide': startCounts[15]!=1}">
 				<button ng-click="endLuck(15, 58, 1);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[15]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[15]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=16}">
 			<div>一等奖</div>
 			<div ng-repeat="luck in luck[16]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(16, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[16]!=0}">
 				<button ng-click="startLuck(16);">start</button>
@@ -354,18 +464,31 @@
 			<div ng-class="{'com-hide': startCounts[16]!=1}">
 				<button ng-click="endLuck(16, 59, 1);">end</button>
 			</div>
+			<div ng-class="{'com-hide': startCounts[16]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[16]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
+			</div>
 		</div>
 
 		<div ng-class="{'com-hide': awardCount!=17}">
 			<div>特等奖</div>
 			<div ng-repeat="luck in luck[17]">
 				{{luck.title}}
+				<a href="javascript:void(0);" class="retryLink" ng-click="retry(17, $index);">&nbsp;&nbsp;</a>
 			</div>
 			<div ng-class="{'com-hide': startCounts[17]!=0}">
 				<button ng-click="startLuck(17);">start</button>
 			</div>
 			<div ng-class="{'com-hide': startCounts[17]!=1}">
 				<button ng-click="endLuck(17, 60, 1);">end</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[17]!=3}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="startRetry();">start</button>
+			</div>
+			<div ng-class="{'com-hide': startCounts[17]!=4}">
+				<button class="btn btn-primary btn-block btn-lg" ng-click="endRetry();">end</button>
 			</div>
 		</div>
 

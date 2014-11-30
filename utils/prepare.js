@@ -1,3 +1,4 @@
+var fs = require('fs');
 var users = require('./users');
 var awoptions = require('./options');
 
@@ -21,6 +22,19 @@ exports.getAwards = function() {
 var preparePhones = function() {
 	var datas = users.getUsers();
 	var options = awoptions.getOptions();
+
+	blacks = [];
+	awards = [];
+
+	// 如果程序重启,把上一次已经中奖的人放入黑名单,这些人就不会再这轮中重复出现了.
+	try {
+		var allreadyAwards = fs.readFileSync('awards.txt', 'utf8');
+		blacks = allreadyAwards.split(',');
+	} catch(e) {
+		console.log('no file');
+	}
+	
+	console.log(blacks);
 
 	var num = 0;
 	// 把所有号码读入到phones数组中
@@ -71,25 +85,40 @@ exports.start = function() {
 				var flag = true;
 				while (flag) {
 					flag = false;
-					var index = Math.floor(Math.random()*datas[data].people.length);
-					var awardPhone = datas[data].people[index].phone;
-					// 已经中奖者不算
-					for (var awph in awards) {
-						if (awards[awph] == awardPhone) flag = true;
+					var index = 0;
+					var awardPhone = '';
+					if (datas[data].people.length == 1) {
+						awardPhone = datas[data].people[index].phone;
+					} else {
+						index = Math.floor(Math.random()*datas[data].people.length);
+						awardPhone = datas[data].people[index].phone;
+
+						// 已经中奖者不算
+						for (var awph in awards) {
+							if (awards[awph] == awardPhone) flag = true;
+						}
+						// 黑名单中人员不算
+						for (var bk in blacks) {
+							if (blacks[bk] == awardPhone) flag = true;
+						}
 					}
-					// 黑名单中人员不算
-					for (var bk in blacks) {
-						if (blacks[bk] == awardPhone) flag = true;
-					}
+					
+					
 					// 放入中奖列表
 					if (flag == false) {
 						var length = awards.length;
 						awards[length] = awardPhone;
+						console.log(awardPhone);
 					}
 				}
 			}
 		}
+		console.log('==========================');
 	}
+	fs.writeFile('awards.txt', awards, function (err) {
+		if (err) throw err;
+		console.log('It\'s saved!'); //文件被保存
+	});
 	return awards;
 }
 

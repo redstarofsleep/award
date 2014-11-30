@@ -2,7 +2,7 @@ var app = require('../app');
 var prepare = require('../utils/prepare');
 
 exports.startAward = function(req, res) {
-	app.sendws('one client start');
+	prepare.start();
 	res.send('OK');
 };
 
