@@ -1,0 +1,19 @@
+.lay-main {
+	min-height: 768px;
+	position: relative;
+	background-color: #2b152a;
+	width: auto;
+	margin-left: 300px;
+	float: none;
+}
+
+.lay-left{
+	background-color: #FFFFFF;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	padding: 0;
+	z-index: 1;
+	width: 300px;
+}
