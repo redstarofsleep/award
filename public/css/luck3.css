@@ -7,7 +7,7 @@
 	float: none;
 }
 
-.lay-left{
+.lay-left {
 	background-color: #FFFFFF;
 	position: fixed;
 	top: 0;
@@ -16,4 +16,18 @@
 	padding: 0;
 	z-index: 1;
 	width: 300px;
+}
+
+.com-title {
+	color: #F10937;
+}
+
+.com-num-box {
+	color: #FFFFFF;
+	background-color: #F10937;
+}
+
+.com-num-row {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
