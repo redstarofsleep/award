@@ -8,6 +8,22 @@ h1 {
 	font-size: 42px;
 }
 
+h4.com-leftitle {
+	height: 25px;
+	padding-top: 10px;
+	border-top: 1px solid #d1d1d1;
+	margin-top: 15px; 
+	margin-bottom: 10px;
+}
+
+h3.com-stbtn {
+	style="margin-top:4px;"
+}
+
+.com-first {
+	background:url(/award/public/image/huawen.png) no-repeat;
+}
+
 span.title {font-size: 60px; color: #F10937;}
 
 .com-hide {display:none;}

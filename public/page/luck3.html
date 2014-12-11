@@ -13,15 +13,24 @@
 	</head>
 	<body ng-controller="AwardController">
 		<div class="lay-left">
-			<div style="margin: 5px 72px; width: 100%"><img src="/award/public/image/logo.png"></img></div>
-			<div class="container-fluid">
+			<div style="margin: 10px 61px;"><img src="/award/public/image/logo.png"></img></div>
+			<div class="container-fluid" style="margin-top:0px;padding:0 auto">
+				<div class="row" style="margin-top:0px;padding:0 auto">
+				<div class="col-sm-6" style="margin-top:0px;padding:0 auto">
+					<a ng-class="{'com-hide': awardCount==0}" href="javascript:void(0);" ng-click="last();" title="last" style="float:left;color:#acacac">&lt;</a>
+				</div>
+				<div class="col-sm-6" style="margin-top:0px;padding:0 auto">
+					<a ng-class="{'com-hide': awardCount==17}" href="javascript:void(0);" ng-click="next();" title="next" style="float:right;color:#acacac">&gt;</a>
+				</div>
+			</div>
 				<table ng-class="{'com-hide': luck.id>12}" ng-repeat="luck in lucks" style="width:100%;">
-					<tr ng-class="{'com-hide': luck.id!=0}">
-						<td colspan="5" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
+					<tr ng-class="{'com-hide': luck.id!=0 || awardCount<$index}">
+						<td colspan="5"><h4 class="com-leftitle">{{luck.name}}</h4></td>
 					</tr>
-					<tr ng-class="{'com-hide': luck.id!=10}">
-						<td colspan="2" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
+					<tr ng-class="{'com-hide': luck.id!=10 || awardCount<$index}">
+						<td colspan="2"><h4 class="com-leftitle">{{luck.name}}</h4></td>
 					</tr>
+					<!--
 					<tr ng-class="{'com-hide': luck.id!=13}">
 						<td colspan="3" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
 					</tr>
@@ -31,43 +40,34 @@
 					<tr ng-class="{'com-hide': luck.id!=17}">
 						<td colspan="1" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
 					</tr>
-
-					<tr>
+					-->
+					<tr ng-class="{'com-hide': awardCount<$index}">
 						<td ng-repeat="content in luck.contents">{{content.title}}</td>
 					</tr>
 
 				</table>
 
 				<table style="width:100%">
-					<tr>
-						<td colspan="3" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>二等奖</h4></td>
+					<tr ng-class="{'com-hide': awardCount<13}">
+						<td colspan="3"><h4 class="com-leftitle">二等奖</h4></td>
 					</tr>
 					<tr>
-						<td ng-class="{'com-hide': luck.id<13 || luck.id>15}" ng-repeat="luck in lucks"><span ng-repeat="content in luck.contents">{{content.title}}</span></td>
+						<td ng-class="{'com-hide': luck.id<13 || luck.id>15 || awardCount<$index}" ng-repeat="luck in lucks"><span ng-repeat="content in luck.contents">{{content.title}}</span></td>
 					</tr>
 				</table>
 
 				
 
 				<table ng-class="{'com-hide': luck.id<16}" ng-repeat="luck in lucks" style="width:100%;">
-					<tr ng-class="{'com-hide': luck.id!=0}">
-						<td colspan="5" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
+					<tr ng-class="{'com-hide': luck.id!=16 || awardCount<$index}" style="height: 40px;">
+						<td colspan="1"><h4 class="com-leftitle com-first">{{luck.name}}</h4></td>
 					</tr>
-					<tr ng-class="{'com-hide': luck.id!=10}">
-						<td colspan="2" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
-					</tr>
-					<tr ng-class="{'com-hide': luck.id!=13}">
-						<td colspan="3" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
-					</tr>
-					<tr ng-class="{'com-hide': luck.id!=16}">
-						<td colspan="1" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
-					</tr>
-					<tr ng-class="{'com-hide': luck.id!=17}">
-						<td colspan="1" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
+					<tr ng-class="{'com-hide': luck.id!=17 || awardCount<$index}">
+						<td colspan="1"><h4 class="com-leftitle com-first">{{luck.name}}</h4></td>
 					</tr>
 
-					<tr>
-						<td ng-repeat="content in luck.contents">{{content.title}}</td>
+					<tr ng-class="{'com-hide': awardCount<$index}">
+						<td ng-repeat="content in luck.contents" >{{content.title}}</td>
 					</tr>
 
 				</table>
@@ -78,10 +78,10 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-1">
-					<a ng-class="{'com-hide': awardCount==0}" href="javascript:void(0);" ng-click="last();" title="last">&lt;&lt;</a>
+					&nbsp;<!--<a ng-class="{'com-hide': awardCount==0}" href="javascript:void(0);" ng-click="last();" title="last">&lt;&lt;</a>-->
 				</div>
 				<div class="col-sm-1 col-sm-offset-10">
-					<a ng-class="{'com-hide': awardCount==17}" href="javascript:void(0);" ng-click="next();" title="next">&gt;&gt;</a>
+					&nbsp;<!--<a ng-class="{'com-hide': awardCount==17}" href="javascript:void(0);" ng-click="next();" title="next">&gt;&gt;</a>-->
 				</div>
 			</div>
 		
@@ -127,16 +127,16 @@
 
 				<div class="com-start-btn">
 					<div ng-class="{'com-hide': luck.btn!=0}">
-							<button class="btn com-btn-primary btn-block btn-lg" ng-click="startLuck($index);"><h1>开始</h1><h3>START</h3></button>
+							<button class="btn com-btn-primary btn-block btn-lg" ng-click="startLuck($index);"><h1>开始</h1><h3 class="com-stbtn">START</h3></button>
 						</div>
 						<div ng-class="{'com-hide': luck.btn!=1}">
-							<button class="btn com-btn-primary btn-block btn-lg" ng-click="endLuck($index, luck.start, luck.contents.length);"><h1>停止</h1><h3>END</h3></button>
+							<button class="btn com-btn-primary btn-block btn-lg" ng-click="endLuck($index, luck.start, luck.contents.length);"><h1>停止</h1><h3 class="com-stbtn">END</h3></button>
 						</div>
 						<div ng-class="{'com-hide': luck.btn!=3}">
-							<button class="btn com-btn-primary btn-block btn-lg" ng-click="startRetry();"><h1>开始</h1><h3>START</h3></button>
+							<button class="btn com-btn-primary btn-block btn-lg" ng-click="startRetry();"><h1>开始</h1><h3 class="com-stbtn">START</h3></button>
 						</div>
 						<div ng-class="{'com-hide': luck.btn!=4}">
-							<button class="btn com-btn-primary btn-block btn-lg" ng-click="endRetry();"><h1>停止</h1><h3>END</h3></button>
+							<button class="btn com-btn-primary btn-block btn-lg" ng-click="endRetry();"><h1>停止</h1><h3 class="com-stbtn">END</h3></button>
 						</div>
 
 				
