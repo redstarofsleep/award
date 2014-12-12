@@ -21,9 +21,9 @@ awardModule.controller('AwardController', function($scope, $http, $interval) {
 		{'id':14, 'name':'二等奖', 'contents':[{'title':'8888'}], 'center':1, 'btn':0, 'start':57},
 		{'id':15, 'name':'二等奖', 'contents':[{'title':'8888'}], 'center':1, 'btn':0, 'start':58},
 				
-		{'id':16, 'name':'一等奖', 'contents':[{'title':'8888'}], 'center':1, 'btn':0, 'start':59},
+		{'id':16, 'name':'一等奖', 'contents':[{'title':'8888'},{'title':'8888'},{'title':'8888'}], 'center':3, 'btn':0, 'start':59},
 
-		{'id':17, 'name':'特等奖', 'contents':[{'title':'8888'}], 'center':1, 'btn':0, 'start':60}
+		{'id':17, 'name':'特等奖', 'contents':[{'title':'8888'}], 'center':1, 'btn':0, 'start':62}
 	];
 
 	$scope.awardCount = 0;

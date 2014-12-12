@@ -57,8 +57,8 @@ var options = [
 		{dep: 'other2', size: 1, already: 0},
 		{dep: 'gmsz1', size: 1, already: 0}
 	]},
-	{name: '一等奖', total: 1, count: 1, distribute: [
-		{dep: 'gmsz1', size: 1, already: 0}
+	{name: '一等奖', total: 3, count: 1, distribute: [
+		{dep: 'gmsz1', size: 3, already: 0}
 	]},
 	{name: '特等奖', total: 1, count: 1, distribute: [
 		{dep: 'gmsz1', size: 1, already: 0}

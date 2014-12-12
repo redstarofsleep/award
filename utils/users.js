@@ -10,12 +10,13 @@ var datas = [
 		{phone: '8008', name: 'xxx', number: 7},
 		{phone: '8009', name: 'xxx', number: 8},
 		{phone: '8010', name: 'xxx', number: 9},
-		{phone: '8011', name: 'xxx', number: 10},
+		// {phone: '8011', name: 'xxx', number: 10},
 		{phone: '8012', name: 'xxx', number: 11},
 		{phone: '8013', name: 'xxx', number: 12},
 		{phone: '8015', name: 'xxx', number: 13},
 		{phone: '8016', name: 'xxx', number: 14},
 		{phone: '8017', name: 'xxx', number: 15},
+		{phone: '8233', name: 'xxx', number: 210},
 
 		{phone: '8035', name: 'xxx', number: 31},
 		{phone: '8036', name: 'xxx', number: 32},
@@ -241,7 +242,7 @@ var datas = [
 		
 	]},
 	{part: 'other2', people: [
-		{phone: '8233', name: 'xxx', number: 210}
+		{phone: '8011', name: 'xxx', number: 10}
 	]},
 	{part: 'gmsz3', people: [
 		
