@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+
+body{
+	font-family: Microsoft YaHei, Helvetica, sans-serif, Arial;
+	background-color: #E6E6E6; 
+}
+
+h1 {
+	font-size: 42px;
+}
+
+/*中间区域*/
+.lay-main {
+	min-height: 765px;
+	position: relative;
+	background-color: #2b152a;
+	width: auto;
+	margin-left: 250px;
+	float: none;
+	/*padding-right: 64px;*/
+}
+
+/*左边区域*/
+.lay-left {
+	background-color: #FFFFFF;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	padding: 0;
+	z-index: 1;
+	width: 250px;
+}
+
+.lay-bottom {
+	position: relative;
+	margin-top: 20px;
+	margin-left: 300px;
+}
+
+
+/* 左侧奖项标题*/
+h4.com-leftitle {
+	height: 25px;
+	padding-top: 10px;
+	border-top: 1px solid #d1d1d1;
+	margin-top: 15px; 
+	margin-bottom: 10px;
+}
+
+/* 中间的奖项名称 */
+span.title {font-size: 60px; color: #F10937;}
+
+/* 隐藏 */
+.com-hide {display:none;}
+
+/* bootstrap的容器 */
+.container-fluid {position: relative; text-align:center;}
+
+/* 重抽链接 */
+.com-retryLink {position:absolute;top:0;right:20px;padding:10px;padding-top:0;}
+
+/* 发光 */
+@-keyframes shine {/* Safari 和 Chrome */
+	0% {box-shadow: 0px 0px 5px;}
+	50% {box-shadow: 0px 0px 15px;}
+	100% {box-shadow: 0px 0px 5px;}
+}
+@-moz-keyframes shine {/* Safari 和 Chrome */
+	0% {box-shadow: 0px 0px 5px;}
+	50% {box-shadow: 0px 0px 15px;}
+	100% {box-shadow: 0px 0px 5px;}
+}
+@-webkit-keyframes shine {/* Safari 和 Chrome */
+	0% {box-shadow: 0px 0px 5px;}
+	50% {box-shadow: 0px 0px 15px;}
+	100% {box-shadow: 0px 0px 5px;}
+}
+@-o-keyframes shine {/* Safari 和 Chrome */
+	0% {box-shadow: 0px 0px 5px;}
+	50% {box-shadow: 0px 0px 15px;}
+	100% {box-shadow: 0px 0px 5px;}
+}
+.shinebox {
+	animation: shine 3s infinite;
+	-moz-animation: shine 3s infinite;	/* Firefox */
+	-webkit-animation: shine 3s infinite;	/* Safari 和 Chrome */
+	-o-animation: shine 3s infinite;	/* Opera */
+}
+.shinebox h1 {
+	margin: 10px auto;
+	padding: 0;
+}
+
+/*公司Logo*/
+div.com-logo {
+	margin: 10px 36px;
+}
+
+/*中间的红色滚动数字框*/
+.com-num-box {
+	color: #FFFFFF;
+	background-color: #F10937;
+}
+/*中间红色滚动数字框的一行*/
+.com-num-row {
+	margin-top: 25px;
+	margin-bottom: 20px;
+}
+
+/*开始停止按钮*/
+.com-start-btn {
+	position: absolute;
+	float: right;
+	right: 50px;
+	bottom: 15px;
+}
+.com-btn-primary {
+	background: #F10937;
+	color: #FFFFFF;
+}
+.com-btn-primary h1 {
+	padding: 0;
+	margin: 0;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.com-btn-primary h3 {
+	padding: 0;
+	margin: 0;
+}
+h3.com-stbtn {
+	style="margin-top:4px;"
+}

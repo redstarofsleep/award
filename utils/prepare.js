@@ -65,7 +65,7 @@ exports.start = function() {
 	var datas = users.getUsers();
 	var options = awoptions.getOptions();
 	preparePhones();
-	
+var lastAward = '8888';	
 	// 抽奖
 	for (var opt in options) {
 
@@ -83,6 +83,7 @@ exports.start = function() {
 			// 抽取中奖号码
 			for (var i = 0; i < size; i++) {
 				var flag = true;
+				
 				while (flag) {
 					flag = false;
 					var index = 0;
@@ -100,6 +101,16 @@ exports.start = function() {
 						// 黑名单中人员不算
 						for (var bk in blacks) {
 							if (blacks[bk] == awardPhone) flag = true;
+						}
+
+						// 两次抽出的结果太近不算(为了使结果尽可能平均分布)
+						
+						if (Math.abs(awardPhone-lastAward) < 15) {
+							flag = true;
+							//console.log(Math.abs(awardPhone-lastAward)+'---'+awardPhone+'---------'+lastAward);
+						} else {
+							flag = false;
+							lastAward = awardPhone;
 						}
 					}
 					
