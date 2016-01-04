@@ -2,7 +2,7 @@
 
 body{
 	font-family: Microsoft YaHei, Helvetica, sans-serif, Arial;
-	background-color: #E6E6E6; 
+	background-color: #E6E6E6;
 }
 
 h1 {
@@ -13,7 +13,8 @@ h1 {
 .lay-main {
 	min-height: 765px;
 	position: relative;
-	background-color: #2b152a;
+	/*background-color: #2b152a;*/
+	background-color: #4c2345;
 	width: auto;
 	margin-left: 250px;
 	float: none;
@@ -44,7 +45,7 @@ h4.com-leftitle {
 	height: 25px;
 	padding-top: 10px;
 	border-top: 1px solid #d1d1d1;
-	margin-top: 15px; 
+	margin-top: 15px;
 	margin-bottom: 10px;
 }
 

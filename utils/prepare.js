@@ -33,7 +33,7 @@ var preparePhones = function() {
 	} catch(e) {
 		console.log('no file');
 	}
-	
+
 	console.log('blacks:'+blacks);
 
 	var num = 0;
@@ -65,12 +65,12 @@ exports.start = function() {
 	var datas = users.getUsers();
 	var options = awoptions.getOptions();
 	preparePhones();
-var lastAward = '8888';	
+var lastAward = '8888';
 	// 抽奖
 	for (var opt in options) {
 
 		for (dis in options[opt].distribute) {
-		
+
 			// 读取配置
 			var dep = options[opt].distribute[dis].dep;
 			var size = options[opt].distribute[dis].size;
@@ -83,7 +83,7 @@ var lastAward = '8888';
 			// 抽取中奖号码
 			for (var i = 0; i < size; i++) {
 				var flag = true;
-				
+
 				while (flag) {
 					flag = false;
 					var index = 0;
@@ -94,6 +94,15 @@ var lastAward = '8888';
 						index = Math.floor(Math.random()*datas[data].people.length);
 						awardPhone = datas[data].people[index].phone;
 
+						// 两次抽出的结果太近不算(为了使结果尽可能平均分布)
+						if (Math.abs(awardPhone-lastAward) < 15) {
+							flag = true;
+							//console.log(Math.abs(awardPhone-lastAward)+'---'+awardPhone+'---------'+lastAward);
+						} else {
+							// flag = false;
+							// lastAward = awardPhone;
+						}
+
 						// 已经中奖者不算
 						for (var awph in awards) {
 							if (awards[awph] == awardPhone) flag = true;
@@ -103,22 +112,15 @@ var lastAward = '8888';
 							if (blacks[bk] == awardPhone) flag = true;
 						}
 
-						// 两次抽出的结果太近不算(为了使结果尽可能平均分布)
-						
-						if (Math.abs(awardPhone-lastAward) < 15) {
-							flag = true;
-							//console.log(Math.abs(awardPhone-lastAward)+'---'+awardPhone+'---------'+lastAward);
-						} else {
-							flag = false;
-							lastAward = awardPhone;
-						}
+
 					}
-					
-					
+
+
 					// 放入中奖列表
 					if (flag == false) {
 						var length = awards.length;
 						awards[length] = awardPhone;
+						lastAward = awardPhone;
 						console.log(awardPhone);
 					}
 				}
