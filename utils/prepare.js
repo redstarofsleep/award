@@ -3,7 +3,7 @@ var users = require('./users');
 var awoptions = require('./options');
 
 // 需要排除的黑名单
-var blacks = ['0000'];
+var blacks = ['000000'];
 // 所有的号码
 var phones = [];
 var optionNum = 0;
@@ -43,12 +43,12 @@ var preparePhones = function() {
 		for (var j = 0; j < people.length; j++) {
 			// 判断是否在黑名单中
 			var blackFlag = false;
-			for (var bk in blacks) {
-				if (blacks[bk] == people[j]['phone']) {
-					blackFlag = true;
-					break;
-				}
-			}
+			// for (var bk in blacks) {
+			// 	if (blacks[bk] == people[j]['phone']) {
+			// 		blackFlag = true;
+			// 		break;
+			// 	}
+			// }
 			// 不在黑名单中添加进号码列表
 			if (blackFlag == false) {
 				phones[num] = people[j]['phone'];
@@ -65,7 +65,7 @@ exports.start = function() {
 	var datas = users.getUsers();
 	var options = awoptions.getOptions();
 	preparePhones();
-var lastAward = '8888';
+var lastAward = '666666';
 	// 抽奖
 	for (var opt in options) {
 
@@ -74,6 +74,7 @@ var lastAward = '8888';
 			// 读取配置
 			var dep = options[opt].distribute[dis].dep;
 			var size = options[opt].distribute[dis].size;
+			var fileCheck = options[opt].distribute[dis].fileCheck;
 
 			var data;
 			// 找到分组
@@ -108,8 +109,19 @@ var lastAward = '8888';
 							if (awards[awph] == awardPhone) flag = true;
 						}
 						// 黑名单中人员不算
-						for (var bk in blacks) {
-							if (blacks[bk] == awardPhone) flag = true;
+						// for (var bk in blacks) {
+						// 	if (blacks[bk] == awardPhone && fileCheck == true) {
+						// 		console.log('black==>' + awardPhone);
+						// 		flag = true;
+						// 	}
+						// }
+
+						for (var ii = 80; ii < blacks.length; ii++) {
+							// console.log(ii + '===' + blacks[ii]);
+							if (blacks[ii] == awardPhone && fileCheck == true) {
+									console.log('black==>' + awardPhone);
+									flag = true;
+							}
 						}
 
 
@@ -143,7 +155,7 @@ exports.retry = function() {
 		}
 	}
 	var flag = true;
-	var awardPhone = '0000';
+	var awardPhone = '000000';
 	while (flag) {
 		flag = false;
 		var index = Math.floor(Math.random()*redatas[data].people.length);

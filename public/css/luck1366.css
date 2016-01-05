@@ -13,10 +13,10 @@ h1 {
 .lay-main {
 	min-height: 765px;
 	position: relative;
-	/*background-color: #2b152a;*/
 	background-color: #4c2345;
+	/*background-color: #510051;*/
 	width: auto;
-	margin-left: 250px;
+	/*margin-left: 250px;*/
 	float: none;
 	/*padding-right: 64px;*/
 }
@@ -44,9 +44,10 @@ h1 {
 h4.com-leftitle {
 	height: 25px;
 	padding-top: 10px;
-	border-top: 1px solid #d1d1d1;
+	/*border-top: 1px solid #d1d1d1;*/
 	margin-top: 15px;
 	margin-bottom: 10px;
+	color: #F10937;
 }
 
 /* 中间的奖项名称 */
@@ -88,7 +89,7 @@ span.title {font-size: 60px; color: #F10937;}
 	-webkit-animation: shine 3s infinite;	/* Safari 和 Chrome */
 	-o-animation: shine 3s infinite;	/* Opera */
 }
-.shinebox h1 {
+.com-num-box h1 {
 	margin: 10px auto;
 	padding: 0;
 }
@@ -102,11 +103,21 @@ div.com-logo {
 .com-num-box {
 	color: #FFFFFF;
 	background-color: #F10937;
+	padding:2px 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.com-num-box-all {
+	color: #FFFFFF;
+	background-color: #F10937;
+	padding:2px 0;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 /*中间红色滚动数字框的一行*/
 .com-num-row {
-	margin-top: 25px;
-	margin-bottom: 20px;
+	/*margin-top: 25px;
+	margin-bottom: 20px;*/
 }
 
 /*开始停止按钮*/
