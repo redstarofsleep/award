@@ -75,7 +75,7 @@ awardModule.controller('AwardController', function($scope, $http, $interval) {
 	$scope.retry = function(num, index) {
 		if (!confirm('确定要重抽吗?')) return;
 
-		$scope.lucks[num].contents[index].title = '8888';
+		$scope.lucks[num].contents[index].title = '000000';
 		$scope.lucks[num].btn = 3;
 
 		$scope.retryIndex.num = num;
