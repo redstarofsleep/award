@@ -76,17 +76,17 @@
 					</div>
 				</div>
 
-				<div style="border: 1px solid #875b33; padding: 15px 0px;" ng-class="{'com-hide': showAll==true}">
+				<div style="border: 1px solid #875b33; padding: 10px 0px;" ng-class="{'com-hide': showAll==true}">
 					<div ng-repeat="luck in lucks">
 						<div ng-class="{'com-hide': awardCount!=$index}">
 							<!--
 							<div ng-hide="awardCount!=$index">
 							-->
 							<div class="row"><img style="height:25px;padding:0;margin:0" src="/award/public/image/company-logo.png"/></div>
-							<div class="row"><img style="width:50px;" src="/award/public/image/mokey-left.png"/><span class="title">{{luck.name}}</span><img style="width:50px;" src="/award/public/image/mokey-right.png"/></div>
+							<div class="row"><img style="width:48px;" src="/award/public/image/mokey-left.png"/><span class="title">{{luck.name}}</span><img style="width:48px;" src="/award/public/image/mokey-right.png"/></div>
 
 							<div class="row">
-								<div class="col-sm-12" style="padding-bottom: 20px;">
+								<div class="col-sm-12" style="padding-bottom: 5px;">
 									<img ng-class="{'com-hide': luck.id>9}" src="/award/public/image/luck_prize0.png"></img>
 									<img ng-class="{'com-hide': (luck.id>12 || luck.id<10)}" src="/award/public/image/luck_prize1.png"></img>
 									<img ng-class="{'com-hide': luck.id>15 || luck.id<13}" src="/award/public/image/luck_prize2.png"></img>
