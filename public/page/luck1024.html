@@ -2,7 +2,7 @@
 <html ng-app="awardModule">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
+
 		<link rel="stylesheet" type="text/css" href="/award/public/bootstrap/css/bootstrap.min.css"></link>
 		<link rel="stylesheet" type="text/css" href="/award/public/css/luck1024.css"></link>
 		<script type="text/javascript" src="/award/public/jquery/jquery-1.11.0.min.js"></script>
@@ -12,87 +12,31 @@
 		<script type="text/javascript" src="/award/public/js/luck3.js"></script>
 	</head>
 	<body ng-controller="AwardController">
-		<div class="lay-left">
-			<div class="com-logo"><img src="/award/public/image/logo_1024.png"></img></div>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-6">
-						<a ng-class="{'com-hide': awardCount==0}" href="javascript:void(0);" ng-click="last();" title="last" style="float:left;color:#acacac">&lt;</a>
-					</div>
-					<div class="col-sm-6">
-						<a ng-class="{'com-hide': awardCount==17}" href="javascript:void(0);" ng-click="next();" title="next" style="float:right;color:#acacac">&gt;</a>
-					</div>
-				</div>
-				<div class="row">
-					<table ng-class="{'com-hide': luck.id>12}" ng-repeat="luck in lucks" style="width:100%;">
-						<tr ng-class="{'com-hide': luck.id!=0 || awardCount<$index}">
-							<td colspan="5"><h4 class="com-leftitle" style="margin-top:0;">{{luck.name}}</h4></td>
-						</tr>
-						<tr ng-class="{'com-hide': luck.id!=10 || awardCount<$index}">
-							<td colspan="2"><h4 class="com-leftitle">{{luck.name}}</h4></td>
-						</tr>
-						<!--
-						<tr ng-class="{'com-hide': luck.id!=13}">
-							<td colspan="3" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
-						</tr>
-						<tr ng-class="{'com-hide': luck.id!=16}">
-							<td colspan="1" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
-						</tr>
-						<tr ng-class="{'com-hide': luck.id!=17}">
-							<td colspan="1" style="border-top: 1px solid #d1d1d1;padding-top:5px"><h4>{{luck.name}}</h4></td>
-						</tr>
-						-->
-						<tr ng-class="{'com-hide': awardCount<$index}">
-							<td ng-repeat="content in luck.contents">{{content.title}}</td>
-						</tr>
-					</table>
-
-					<table style="width:100%">
-						<tr ng-class="{'com-hide': awardCount<13}">
-							<td colspan="3"><h4 class="com-leftitle">二等奖</h4></td>
-						</tr>
-						<tr>
-							<td ng-class="{'com-hide': luck.id<13 || luck.id>15 || awardCount<$index}" ng-repeat="luck in lucks"><span ng-repeat="content in luck.contents">{{content.title}}</span></td>
-						</tr>
-					</table>
-
-					<table ng-class="{'com-hide': luck.id<16}" ng-repeat="luck in lucks" style="width:100%;">
-						<tr ng-class="{'com-hide': luck.id!=16 || awardCount<$index}">
-							<td colspan="3"><h4 class="com-leftitle">{{luck.name}}</h4></td>
-						</tr>
-						<tr ng-class="{'com-hide': luck.id!=17 || awardCount<$index}">
-							<td colspan="1"><h4 class="com-leftitle">{{luck.name}}</h4></td>
-						</tr>
-						<tr ng-class="{'com-hide': awardCount<$index}">
-							<td ng-repeat="content in luck.contents" >{{content.title}}</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-
-
 		<div class="lay-main">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-sm-1">
-						&nbsp;<!--<a ng-class="{'com-hide': awardCount==0}" href="javascript:void(0);" ng-click="last();" title="last">&lt;&lt;</a>-->
+						&nbsp;<a ng-class="{'com-hide': awardCount==0}" href="javascript:void(0);" ng-click="last();" title="last">&lt;&lt;</a>
 					</div>
-					<div class="col-sm-1 col-sm-offset-10">
-						&nbsp;<!--<a ng-class="{'com-hide': awardCount==17}" href="javascript:void(0);" ng-click="next();" title="next">&gt;&gt;</a>-->
+					<div class="col-sm-2 col-sm-offset-4">
+						&nbsp;<a href="javascript:void(0);" ng-click="showAllFun();" title="last">--</a>
+					</div>
+					<div class="col-sm-1 col-sm-offset-4">
+						&nbsp;<a ng-class="{'com-hide': awardCount==15}" href="javascript:void(0);" ng-click="next();" title="next">&gt;&gt;</a>
 					</div>
 				</div>
-		
-				<div style="border: 1px solid #875b33; padding: 25px 0px;">
+
+				<div style="border: 1px solid #875b33; padding: 10px 0px;" ng-class="{'com-hide': showAll==true}">
 					<div ng-repeat="luck in lucks">
 						<div ng-class="{'com-hide': awardCount!=$index}">
 							<!--
 							<div ng-hide="awardCount!=$index">
 							-->
-							<div class="row"><span class="title">{{luck.name}}</span></div>
+							<div class="row"><img style="height:25px;padding:0;margin:0" src="/award/public/image/company-logo.png"/></div>
+							<div class="row"><img style="width:48px;" src="/award/public/image/mokey-left.png"/><span class="title">{{luck.name}}</span><img style="width:48px;" src="/award/public/image/mokey-right.png"/></div>
 
 							<div class="row">
-								<div class="col-sm-12" style="padding-bottom: 40px;">
+								<div class="col-sm-12" style="padding-bottom: 5px;">
 									<img ng-class="{'com-hide': luck.id>9}" src="/award/public/image/luck_prize0_1024.png"></img>
 									<img ng-class="{'com-hide': (luck.id>12 || luck.id<10)}" src="/award/public/image/luck_prize1_1024.png"></img>
 									<img ng-class="{'com-hide': luck.id>15 || luck.id<13}" src="/award/public/image/luck_prize2_1024.png"></img>
@@ -102,22 +46,24 @@
 							</div>
 
 							<div class="row">
-								<div class="col-sm-5" style="padding-right: 25px;">
+								<div class="col-sm-{{(12-luck.width)/2}}" style="padding-right: 25px;">
 									<img style="float:right" src="/award/public/image/left{{luck.id}}_1024.png"></img>
 								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-{{luck.width}}">
 									<div class="row" ng-class="{'com-hide': luck.center>=5}"><div class="col-sm-12"><h1>&nbsp;</h1></div></div>
 									<div class="row" ng-class="{'com-hide': luck.center>=2}"><div class="col-sm-12"><h1>&nbsp;</h1></div></div>
-									<div class="row com-num-row" ng-repeat="content in luck.contents">
-										<div class="col-sm-12 com-num-box shinebox">
-											<h1>{{content.title}}</h1>
-											<a href="javascript:void(0);" class="com-retryLink" ng-click="retry(luck.id, $index);">&nbsp;&nbsp;</a>
+									<div class="row com-num-row" >
+										<div class="col-sm-{{luck.cols}} " ng-repeat="content in luck.contents">
+											<div class="com-num-box">
+												<h1>{{content.title}}</h1>
+												<a href="javascript:void(0);" class="com-retryLink" ng-click="retry(luck.id, $index);">&nbsp;&nbsp;</a>
+											</div>
 										</div>
 										<div class="col-sm-12" ng-class="{'com-hide': luck.center != 2}"><h1>&nbsp;</h1></div>
 									</div>
 								</div>
-								<div class="col-sm-5" style="padding-left: 25px;">
-									<img style="float:left" src="/award/public/image/right1024.png"></img>
+								<div class="col-sm-4" style="padding-left: 25px;">
+									<img style="float:left" src="/award/public/image/right_1024.png"></img>
 								</div>
 							</div>
 
@@ -138,14 +84,67 @@
 						</div>
 					</div>
 				</div>
+
+				<!-- 所有号码 -->
+				<div ng-class="{'com-hide': showAll==false}" style="border: 1px solid #875b33;">
+					<div class="container-fluid">
+						<div class="row"><img style="height:15px;padding:0;margin:0" src="/award/public/image/company-logo.png"/></div>
+						<div class="row"><img style="width:30px;" src="/award/public/image/mokey-left.png"/><span style="font-size: 32px; color: #F10937;">所有奖项</span><img style="width:30px;" src="/award/public/image/mokey-right.png"/></div>
+						<!-- 幸运奖 -->
+						<div ng-repeat="luck in lucks" class="row">
+							<div ng-class="{'com-hide': (luck.id!=0) || awardCount<$index}" class="col-sm-12">
+								<h4 class="com-leftitle" style="border-top: 1px solid #d1d1d1;">{{luck.name}}</h4>
+							</div>
+							<div ng-class="{'com-hide': luck.id>=10 || awardCount<$index}">
+								<div class="col-sm-{{(12-luck.contents.length)/2}}"></div>
+								<div ng-repeat="content in luck.contents" class="col-sm-1">
+									<div class="com-num-box-all">{{content.title}}</div>
+								</div>
+								<div class="col-sm-{{(12-luck.contents.length)/2}}">&nbsp;</div>
+							</div>
+						</div>
+						<!-- 三等奖 -->
+						<div class="row">
+							<div ng-class="{'com-hide': awardCount<8}" class="col-sm-12">
+								<h4 class="com-leftitle">三等奖</h4>
+							</div>
+							<div class="col-sm-3"></div>
+							<div ng-repeat="luck in lucks" ng-class="{'com-hide': luck.id<10 || luck.id>12 || awardCount<$index}">
+								<div ng-repeat="content in luck.contents" class="col-sm-1">
+									<div class="com-num-box-all">{{content.title}}</div>
+								</div>
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<!-- 二等奖 -->
+						<div class="row">
+							<div ng-class="{'com-hide': awardCount<11}" class="col-sm-12">
+								<h4 class="com-leftitle">二等奖</h4>
+							</div>
+							<div class="col-sm-3"></div>
+							<div ng-repeat="luck in lucks" ng-class="{'com-hide': luck.id<13 || luck.id>15 || awardCount<$index}">
+								<div ng-repeat="content in luck.contents" class="col-sm-2">
+									<div class="com-num-box-all">{{content.title}}</div>
+								</div>
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<!-- 一等奖 -->
+						<div class="row" style="margin-bottom: 10px;">
+							<div ng-class="{'com-hide': awardCount<14}" class="col-sm-12">
+								<h4 class="com-leftitle">一等奖</h4>
+							</div>
+							<div class="col-sm-4"></div>
+							<div ng-repeat="luck in lucks" ng-class="{'com-hide': luck.id<16 || luck.id>16 || awardCount<$index}">
+								<div ng-repeat="content in luck.contents" class="col-sm-4">
+									<div class="com-num-box-all">{{content.title}}</div>
+								</div>
+							</div>
+							<div class="col-sm-4"></div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<!--
-		<div class="lay-bottom">
-			<div class="container-fluid">
-				<img src="/award/public/image/qcan.png"></img>
-			</div>
-		</div>
-		-->
 	</body>
 </html>
