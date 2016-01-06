@@ -84,7 +84,7 @@ var options = [
 	]},
 	{name: '二等奖', total: 3, count: 1, distribute: [
 		{dep: 'gmsz1', size: 1, already: 0, fileCheck: true},
-		{dep: 'other2', size: 1, already: 0, fileCheck: true},
+		{dep: 'other1', size: 1, already: 0, fileCheck: true},
 		{dep: 'gmsz1', size: 1, already: 0, fileCheck: true}
 	]},
 	{name: '一等奖', total: 1, count: 1, distribute: [

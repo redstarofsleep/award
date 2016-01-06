@@ -108,6 +108,8 @@
 												<h1>{{content.title}}</h1>
 												<a href="javascript:void(0);" class="com-retryLink" ng-click="retry(luck.id, $index);">&nbsp;&nbsp;</a>
 											</div>
+											<!--插入一空行-->
+											<div class="col-sm-12" ng-class="{'com-hide': luck.center>=5}"><h1>&nbsp;</h1></div>
 										</div>
 										<div class="col-sm-12" ng-class="{'com-hide': luck.center != 2}"><h1>&nbsp;</h1></div>
 									</div>
