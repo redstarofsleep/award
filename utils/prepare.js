@@ -65,7 +65,7 @@ exports.start = function() {
 	var datas = users.getUsers();
 	var options = awoptions.getOptions();
 	preparePhones();
-var lastAward = '666666';
+	var lastAward = '666666';
 	// 抽奖
 	for (var opt in options) {
 

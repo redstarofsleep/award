@@ -150,9 +150,11 @@ var datas = [
 		{phone: '600147', name: 'xxx', number: 147},
 		{phone: '600148', name: 'xxx', number: 148},
 		{phone: '600149', name: 'xxx', number: 149},
-		{phone: '600150', name: 'xxx', number: 150},
+		{phone: '600150', name: 'xxx', number: 150}
 
-		{phone: '600151', name: 'xxx', number: 151},
+	]},
+	{part: 'other1', people: [
+    {phone: '600151', name: 'xxx', number: 151},
 		{phone: '600152', name: 'xxx', number: 152},
 		{phone: '600153', name: 'xxx', number: 153},
 		// {phone: '600154', name: 'xxx', number: 154},
@@ -302,10 +304,6 @@ var datas = [
 		{phone: '600298', name: 'xxx', number: 298},
 		{phone: '600299', name: 'xxx', number: 299},
 		{phone: '600300', name: 'xxx', number: 300}
-
-	]},
-	{part: 'other1', people: [
-
 	]},
 	{part: 'gmsz2', people: [
 

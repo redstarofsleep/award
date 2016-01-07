@@ -9,7 +9,7 @@
 		<script type="text/javascript" src="/award/public/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/award/public/angular/angular.min.js"></script>
 		<script type="text/javascript" src="/award/public/js/award.js"></script>
-		<script type="text/javascript" src="/award/public/js/luck3.js"></script>
+		<script type="text/javascript" src="/award/public/js/luck3_2.js"></script>
 	</head>
 	<body ng-controller="AwardController">
 		<!--
@@ -72,7 +72,7 @@
 						&nbsp;<a href="javascript:void(0);" ng-click="showAllFun();" title="last">--</a>
 					</div>
 					<div class="col-sm-1 col-sm-offset-4">
-						&nbsp;<a ng-class="{'com-hide': awardCount==15}" href="javascript:void(0);" ng-click="next();" title="next">&gt;&gt;</a>
+						&nbsp;<a ng-class="{'com-hide': awardCount==14}" href="javascript:void(0);" ng-click="next();" title="next">&gt;&gt;</a>
 					</div>
 				</div>
 
@@ -108,10 +108,10 @@
 												<h1>{{content.title}}</h1>
 												<a href="javascript:void(0);" class="com-retryLink" ng-click="retry(luck.id, $index);">&nbsp;&nbsp;</a>
 											</div>
-											<!--插入一空行-->
-											<div class="col-sm-12" ng-class="{'com-hide': luck.center>=5}"><h1>&nbsp;</h1></div>
+											<!--插入一空行
+											<div class="col-sm-12" ng-class="{'com-hide': luck.center>=5}"><h1>&nbsp;</h1></div>-->
 										</div>
-										
+
 									</div>
 								</div>
 								<div class="col-sm-4" style="padding-left: 25px;">
@@ -170,7 +170,7 @@
 						</div>
 						<!-- 二等奖 -->
 						<div class="row">
-							<div ng-class="{'com-hide': awardCount<11}" class="col-sm-12">
+							<div ng-class="{'com-hide': awardCount<10}" class="col-sm-12">
 								<h4 class="com-leftitle">二等奖</h4>
 							</div>
 							<div class="col-sm-3"></div>
@@ -183,7 +183,7 @@
 						</div>
 						<!-- 一等奖 -->
 						<div class="row" style="margin-bottom: 10px;">
-							<div ng-class="{'com-hide': awardCount<14}" class="col-sm-12">
+							<div ng-class="{'com-hide': awardCount<13}" class="col-sm-12">
 								<h4 class="com-leftitle">一等奖</h4>
 							</div>
 							<div class="col-sm-4"></div>
