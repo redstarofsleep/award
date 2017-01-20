@@ -58,13 +58,40 @@ var preparePhones = function() {
 	}
 }
 
+var prepare = function() {
+	var datas = users.getUsers();
+	// 如果程序重启,把上一次已经中奖的人放入黑名单,这些人就不会再这轮中重复出现了.
+	try {
+		var allreadyAwards = fs.readFileSync('awards.txt', 'utf8');
+		blacks = allreadyAwards.split(',');
+	} catch(e) {
+		console.log('no black file');
+	}
+	console.log('blacks:'+blacks);
+	for (var i = 0; i < datas.length; i++) {
+		people = datas[i]['people'];
+		for (var j = 0; j < people.length; j++) {
+			for (var bk in blacks) {
+				if (blacks[bk] == people[j]['phone']) {
+					datas[i].people.splice(j, 1);
+					break;
+				}
+			}
+		}
+	}
+	return datas;
+}
+
 /**
  * 启动时加载
  */
 exports.start = function() {
-	var datas = users.getUsers();
-	var options = awoptions.getOptions();
+	// 返回所有号码，页面随机跳动时用
 	preparePhones();
+	// var datas = users.getUsers();
+	var datas = prepare();
+	var options = awoptions.getOptions();
+
 	var lastAward = '666666';
 	// 抽奖
 	for (var opt in options) {
@@ -85,8 +112,8 @@ exports.start = function() {
 			for (var i = 0; i < size; i++) {
 				var flag = true;
 
-				while (flag) {
-					flag = false;
+				// while (flag) {
+				// 	flag = false;
 					var index = 0;
 					var awardPhone = '';
 					if (datas[data].people.length == 1) {
@@ -94,47 +121,50 @@ exports.start = function() {
 					} else {
 						index = Math.floor(Math.random()*datas[data].people.length);
 						awardPhone = datas[data].people[index].phone;
+						// console.log('pre remove' + datas[data].people.length);
+						datas[data].people.splice(index, 1);
+						// console.log('aft remove' + datas[data].people.length);
 
-						// 两次抽出的结果太近不算(为了使结果尽可能平均分布)
-						if (Math.abs(awardPhone-lastAward) < 15) {
-							flag = true;
-							//console.log(Math.abs(awardPhone-lastAward)+'---'+awardPhone+'---------'+lastAward);
-						} else {
-							// flag = false;
-							// lastAward = awardPhone;
-						}
-
-						// 已经中奖者不算
-						for (var awph in awards) {
-							if (awards[awph] == awardPhone) flag = true;
-						}
-						// 黑名单中人员不算
-						// for (var bk in blacks) {
-						// 	if (blacks[bk] == awardPhone && fileCheck == true) {
-						// 		console.log('black==>' + awardPhone);
-						// 		flag = true;
+						// // 两次抽出的结果太近不算(为了使结果尽可能平均分布)
+						// if (Math.abs(awardPhone-lastAward) < 15) {
+						// 	flag = true;
+						// 	//console.log(Math.abs(awardPhone-lastAward)+'---'+awardPhone+'---------'+lastAward);
+						// } else {
+						// 	// flag = false;
+						// 	// lastAward = awardPhone;
+						// }
+						//
+						// // 已经中奖者不算
+						// for (var awph in awards) {
+						// 	if (awards[awph] == awardPhone) flag = true;
+						// }
+						// // 黑名单中人员不算
+						// // for (var bk in blacks) {
+						// // 	if (blacks[bk] == awardPhone && fileCheck == true) {
+						// // 		console.log('black==>' + awardPhone);
+						// // 		flag = true;
+						// // 	}
+						// // }
+						//
+						// for (var ii = 80; ii < blacks.length; ii++) {
+						// 	// console.log(ii + '===' + blacks[ii]);
+						// 	if (blacks[ii] == awardPhone && fileCheck == true) {
+						// 			console.log('black==>' + awardPhone);
+						// 			flag = true;
 						// 	}
 						// }
 
-						for (var ii = 80; ii < blacks.length; ii++) {
-							// console.log(ii + '===' + blacks[ii]);
-							if (blacks[ii] == awardPhone && fileCheck == true) {
-									console.log('black==>' + awardPhone);
-									flag = true;
-							}
-						}
 
-
-					}
+					// }
 
 
 					// 放入中奖列表
-					if (flag == false) {
+					// if (flag == false) {
 						var length = awards.length;
 						awards[length] = awardPhone;
 						lastAward = awardPhone;
 						console.log(awardPhone);
-					}
+					// }
 				}
 			}
 		}
