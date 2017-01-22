@@ -13,8 +13,13 @@ h1 {
 .lay-main {
 	min-height: 765px;
 	position: relative;
-	background-color: #5F2C57;
+
+	background-color: #732c57;
 	/*
+	background-color: #732c57;
+	background-color: #74366a;
+	background-color: #6a3162;
+	background-color: #5F2C57;
 	background-color: #4c2345;
 	background-color: #56274F;
 	background-color: #5F2C57;

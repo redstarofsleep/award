@@ -20,7 +20,7 @@ exports.getAwards = function() {
 }
 
 var preparePhones = function() {
-	var datas = users.getUsers();
+	var datas = eval(users.getUsers());
 	var options = awoptions.getOptions();
 
 	blacks = [];
@@ -59,7 +59,11 @@ var preparePhones = function() {
 }
 
 var prepare = function() {
-	var datas = users.getUsers();
+	var temp = users.getUsers();
+	// console.log(temp);
+	var datas = eval(temp);
+	// console.log('s===========>');
+	console.log(datas);
 	// 如果程序重启,把上一次已经中奖的人放入黑名单,这些人就不会再这轮中重复出现了.
 	try {
 		var allreadyAwards = fs.readFileSync('awards.txt', 'utf8');
@@ -69,7 +73,7 @@ var prepare = function() {
 	}
 	console.log('blacks:'+blacks);
 	for (var i = 0; i < datas.length; i++) {
-		people = datas[i]['people'];
+		var people = datas[i]['people'];
 		for (var j = 0; j < people.length; j++) {
 			for (var bk in blacks) {
 				if (blacks[bk] == people[j]['phone']) {
@@ -79,6 +83,8 @@ var prepare = function() {
 			}
 		}
 	}
+	// console.log('e==========>');
+	// console.log(datas);
 	return datas;
 }
 

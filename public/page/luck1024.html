@@ -11,7 +11,8 @@
 		<script type="text/javascript" src="/award/public/js/award.js"></script>
 		<script type="text/javascript" src="/award/public/js/luck3.js"></script>
 	</head>
-	<body ng-controller="AwardController">
+	<body ng-controller="AwardController" ng-keydown="pressspace($event);">
+
 		<div class="lay-main">
 			<div class="container-fluid">
 				<div class="row">
@@ -33,7 +34,7 @@
 							<div ng-hide="awardCount!=$index">
 							-->
 							<div class="row"><img style="height:25px;padding:0;margin:0" src="/award/public/image/company-logo.png"/></div>
-							<div class="row"><img style="width:48px;" src="/award/public/image/mokey-left.png"/><span class="title">{{luck.name}}</span><img style="width:48px;" src="/award/public/image/mokey-right.png"/></div>
+							<div class="row"><img style="width:48px;" src="/award/public/image/cook-left2.png"/><span class="title">{{luck.name}}</span><img style="width:48px;" src="/award/public/image/cook-right2.png"/></div>
 
 							<div class="row">
 								<div class="col-sm-12" style="padding-bottom: 5px;">
@@ -65,7 +66,7 @@
 										<div class="col-sm-12" ng-class="{'com-hide': luck.center != 2}"><h1>&nbsp;</h1></div>
 									</div>
 								</div>
-								<div class="col-sm-4" style="padding-left: 25px;">
+								<div class="col-sm-{{(12-luck.width)/2}}" style="padding-left: 25px;">
 									<img style="float:left" src="/award/public/image/right_1024.png"></img>
 								</div>
 							</div>

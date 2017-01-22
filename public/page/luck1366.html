@@ -11,56 +11,7 @@
 		<script type="text/javascript" src="/award/public/js/award.js"></script>
 		<script type="text/javascript" src="/award/public/js/luck3.js"></script>
 	</head>
-	<body ng-controller="AwardController">
-		<!--
-		<div class="lay-left">
-			<div class="com-logo"><img src="/award/public/image/logob.png"></img></div>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-6">
-						<a ng-class="{'com-hide': awardCount==0}" href="javascript:void(0);" ng-click="last();" title="last" style="float:left;color:#acacac">&lt;</a>
-					</div>
-					<div class="col-sm-6">
-						<a ng-class="{'com-hide': awardCount==17}" href="javascript:void(0);" ng-click="next();" title="next" style="float:right;color:#acacac">&gt;</a>
-					</div>
-				</div>
-				<div class="row">
-					<table ng-class="{'com-hide': luck.id>12}" ng-repeat="luck in lucks" style="width:100%;">
-						<tr ng-class="{'com-hide': luck.id!=0 || awardCount<$index}">
-							<td colspan="5"><h4 class="com-leftitle" style="margin-top:0;">{{luck.name}}</h4></td>
-						</tr>
-						<tr ng-class="{'com-hide': luck.id!=10 || awardCount<$index}">
-							<td colspan="2"><h4 class="com-leftitle">{{luck.name}}</h4></td>
-						</tr>
-						<tr ng-class="{'com-hide': awardCount<$index}">
-							<td ng-repeat="content in luck.contents">{{content.title}}</td>
-						</tr>
-					</table>
-
-					<table style="width:100%">
-						<tr ng-class="{'com-hide': awardCount<13}">
-							<td colspan="3"><h4 class="com-leftitle">二等奖</h4></td>
-						</tr>
-						<tr>
-							<td ng-class="{'com-hide': luck.id<13 || luck.id>15 || awardCount<$index}" ng-repeat="luck in lucks"><span ng-repeat="content in luck.contents">{{content.title}}</span></td>
-						</tr>
-					</table>
-
-					<table ng-class="{'com-hide': luck.id<16}" ng-repeat="luck in lucks" style="width:100%;">
-						<tr ng-class="{'com-hide': luck.id!=16 || awardCount<$index}">
-							<td colspan="3"><h4 class="com-leftitle">{{luck.name}}</h4></td>
-						</tr>
-						<tr ng-class="{'com-hide': luck.id!=17 || awardCount<$index}">
-							<td colspan="1"><h4 class="com-leftitle">{{luck.name}}</h4></td>
-						</tr>
-						<tr ng-class="{'com-hide': awardCount<$index}">
-							<td ng-repeat="content in luck.contents" >{{content.title}}</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
--->
+	<body ng-controller="AwardController" ng-keydown="pressspace($event);">
 
 		<div class="lay-main">
 			<div class="container-fluid">
@@ -83,7 +34,7 @@
 							<div ng-hide="awardCount!=$index">
 							-->
 							<div class="row"><img style="height:25px;padding:0;margin:0" src="/award/public/image/company-logo.png"/></div>
-							<div class="row"><img style="width:48px;" src="/award/public/image/mokey-left.png"/><span class="title">{{luck.name}}</span><img style="width:48px;" src="/award/public/image/mokey-right.png"/></div>
+							<div class="row"><img style="width:48px;" src="/award/public/image/cook-left2.png"/><span class="title">{{luck.name}}</span><img style="width:48px;" src="/award/public/image/cook-right2.png"/></div>
 
 							<div class="row">
 								<div class="col-sm-12" style="padding-bottom: 5px;">
@@ -114,7 +65,7 @@
 										
 									</div>
 								</div>
-								<div class="col-sm-4" style="padding-left: 25px;">
+								<div class="col-sm-{{(12-luck.width)/2}}" style="padding-left: 25px;">
 									<img style="float:left" src="/award/public/image/right.png"></img>
 								</div>
 							</div>
