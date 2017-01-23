@@ -125,6 +125,12 @@ awardModule.controller('AwardController', function($scope, $http, $interval) {
 				$scope.keypressNum =0;
 				$scope.endLuck();
 			}
+		} else if ($event.keyCode == 39) {
+			$scope.next();
+		} else if ($event.keyCode == 37) {
+			if ($scope.awardCount > 0) $scope.last();
+		} else if ($event.keyCode == 40) {
+			$scope.showAllFun();
 		}
 	};
 });
