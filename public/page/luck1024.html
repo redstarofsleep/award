@@ -99,7 +99,7 @@
 							<div class="col-sm-12" ng-class="{'com-hide': ((luck.id!=0) && (luck.id!=6) && (luck.id!=8) && (luck.id!=9)) || awardCount<$index}">
 								<h4 class="com-leftitle" style="border-top: 1px solid #d1d1d1;">{{luck.name}}</h4>
 							</div>
-							<div ng-class="{'com-hide': awardCount<$index}">{{awardCount}}=={{$index}}
+							<div ng-class="{'com-hide': awardCount<$index}">
 								<div class="col-sm-{{(12-luck.contents.length*2)/2}}"></div>
 								<div ng-repeat="content in luck.contents" class="col-sm-2">
 									<div class="com-num-box-all" style="font-size:22pt">{{content.title}}</div>
