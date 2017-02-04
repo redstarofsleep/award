@@ -70,14 +70,17 @@ awardModule.controller('AwardController', function($scope, $http, $interval) {
 	};
 
 	$scope.retryIndex = {};
+	$scope.isRetry = false;
 	$scope.retry = function(num, index) {
 		if (!confirm('确定要重抽吗?')) return;
 
-		$scope.lucks[num].contents[index].title = '000000';
+		$scope.lucks[num].contents[index].title = '00000';
 		$scope.lucks[num].btn = 3;
 
 		$scope.retryIndex.num = num;
 		$scope.retryIndex.index = index;
+
+		$scope.isRetry = true;
 	};
 	$scope.startRetry = function() {
 		$scope.lucks[$scope.retryIndex.num].btn++;
@@ -93,6 +96,8 @@ awardModule.controller('AwardController', function($scope, $http, $interval) {
 		$http({'url':'/award/retry?time='+current, 'method':'get'}).success(function(data, status) {
 			$scope.lucks[$scope.retryIndex.num].contents[$scope.retryIndex.index].title = data;
 		});
+
+		$scope.isRetry = false;
 	};
 
 	$scope.next = function() {
@@ -110,7 +115,7 @@ awardModule.controller('AwardController', function($scope, $http, $interval) {
 	};
 
 	$scope.$on('$destroy',function(event) {
-		alert(0);
+		// alert(0);
 		$interval.cancel(timer);
 	});
 
@@ -120,10 +125,18 @@ awardModule.controller('AwardController', function($scope, $http, $interval) {
 		if ($event.keyCode==32) {
 			if ($scope.keypressNum == 0) {
 				$scope.keypressNum =1;
-				$scope.startLuck();
+				if ($scope.isRetry == true) {
+					$scope.startRetry();
+				} else {
+					$scope.startLuck();
+				}
 			} else {
 				$scope.keypressNum =0;
-				$scope.endLuck();
+				if ($scope.isRetry == true) {
+					$scope.endRetry();
+				} else {
+					$scope.endLuck();
+				}
 			}
 		} else if ($event.keyCode == 39) {
 			$scope.next();

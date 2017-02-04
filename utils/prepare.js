@@ -74,9 +74,10 @@ var prepare = function() {
 	console.log('blacks:'+blacks);
 	for (var i = 0; i < datas.length; i++) {
 		var people = datas[i]['people'];
-		for (var j = 0; j < people.length; j++) {
-			for (var bk in blacks) {
+		for (var bk in blacks) {
+			for (var j = 0; j < people.length; j++) {
 				if (blacks[bk] == people[j]['phone']) {
+console.log(blacks[bk] + '==' + people[j]['phone']);
 					datas[i].people.splice(j, 1);
 					break;
 				}
@@ -98,7 +99,7 @@ exports.start = function() {
 	var datas = prepare();
 	var options = awoptions.getOptions();
 
-	var lastAward = '666666';
+	var lastAward = '66666';
 	// 抽奖
 	for (var opt in options) {
 
@@ -184,18 +185,22 @@ exports.start = function() {
 }
 
 exports.retry = function() {
-	var redatas = users.getUsers();
+	// var redatas = users.getUsers();
+	var redatas = prepare();
 	for (var data in redatas) {
 		if (redatas[data].part == 'gmsz1') {
 			break;
 		}
 	}
 	var flag = true;
-	var awardPhone = '000000';
+	var awardPhone = '00000';
 	while (flag) {
 		flag = false;
 		var index = Math.floor(Math.random()*redatas[data].people.length);
+console.log('length==>'+redatas[data].people.length);
+console.log('index==>'+index);
 		awardPhone = redatas[data].people[index].phone;
+console.log('awardPhone==>'+awardPhone);
 		// 已经中奖者不算
 		for (var awph in awards) {
 			if (awards[awph] == awardPhone) flag = true;
@@ -209,5 +214,6 @@ exports.retry = function() {
 			if (rewards[re] == awardPhone) flag = true;
 		}
 	}
+	rewards[rewards.length] = awardPhone;
 	return awardPhone;
 };
