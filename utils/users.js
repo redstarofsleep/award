@@ -19,10 +19,10 @@ var datas = "["+
 		"{phone: '35054', name: 'xxx', number: 16},"+
 		"{phone: '04510', name: 'xxx', number: 17},"+
 		"{phone: '23664', name: 'xxx', number: 18},"+
-		"{phone: '36249', name: 'xxx', number: 19},"+
+		// "{phone: '36249', name: 'xxx', number: 19},"+
 		"{phone: '05478', name: 'xxx', number: 20},"+
 		"{phone: '30069', name: 'xxx', number: 21},"+
-		"{phone: '04234', name: 'xxx', number: 22},"+
+		// "{phone: '04234', name: 'xxx', number: 22},"+
 		"{phone: '26263', name: 'xxx', number: 23},"+
 		"{phone: '75863', name: 'xxx', number: 24},"+
 		"{phone: '92590', name: 'xxx', number: 25},"+
@@ -42,7 +42,7 @@ var datas = "["+
 		"{phone: '36555', name: 'xxx', number: 39},"+
 		"{phone: '00220', name: 'xxx', number: 40},"+
 		"{phone: '59525', name: 'xxx', number: 41},"+
-		"{phone: '72655', name: 'xxx', number: 42},"+
+		// "{phone: '72655', name: 'xxx', number: 42},"+
 		"{phone: '77627', name: 'xxx', number: 43},"+
 		"{phone: '24990', name: 'xxx', number: 44},"+
 		"{phone: '52967', name: 'xxx', number: 45},"+
